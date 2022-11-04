@@ -47,7 +47,9 @@ namespace MultiCarrierManager {
             this.buyList1 = new System.Windows.Forms.ListView();
             this.buyCommHeader = new System.Windows.Forms.ColumnHeader();
             this.buyAmountHeader = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
             this.buyPriceHeader = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.buyLabel1 = new System.Windows.Forms.Label();
             this.sellList1 = new System.Windows.Forms.ListView();
@@ -72,8 +74,6 @@ namespace MultiCarrierManager {
             this.systemLabel1 = new System.Windows.Forms.Label();
             this.callsignLabel1 = new System.Windows.Forms.Label();
             this.nameLabel1 = new System.Windows.Forms.Label();
-            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.tabControl1.SuspendLayout();
             this.managerTab.SuspendLayout();
             this.carrierTemplate.SuspendLayout();
@@ -182,10 +182,20 @@ namespace MultiCarrierManager {
             this.buyAmountHeader.Text = "Total Amount";
             this.buyAmountHeader.Width = 75;
             // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Outstanding Amount";
+            this.columnHeader5.Width = 108;
+            // 
             // buyPriceHeader
             // 
             this.buyPriceHeader.Text = "Price/commodity";
             this.buyPriceHeader.Width = 94;
+            // 
+            // columnHeader6
+            // 
+            this.columnHeader6.Text = "Credits Allocated";
+            this.columnHeader6.Width = 92;
             // 
             // columnHeader4
             // 
@@ -271,7 +281,7 @@ namespace MultiCarrierManager {
             // 
             // averageHeader
             // 
-            this.averageHeader.Text = "Gal. Avg. Worth";
+            this.averageHeader.Text = "Credits you paid";
             this.averageHeader.Width = 105;
             // 
             // servicesList1
@@ -368,16 +378,6 @@ namespace MultiCarrierManager {
             this.nameLabel1.Size = new System.Drawing.Size(290, 30);
             this.nameLabel1.TabIndex = 0;
             this.nameLabel1.Text = "Name:";
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Outstanding Amount";
-            this.columnHeader5.Width = 108;
-            // 
-            // columnHeader6
-            // 
-            this.columnHeader6.Text = "Credits Allocated";
-            this.columnHeader6.Width = 92;
             // 
             // Form1
             // 
