@@ -237,15 +237,56 @@ namespace MultiCarrierManager.ApiTools {
 
         public bool Refresh()
         {
-            // TODO: check and refresh token
-            return true;
+            try {
+                string tokenurl = AuthServerTokenURL;
+                string postdata =
+                    "grant_type=refresh_token" +
+                    "&refresh_token=" + Uri.EscapeDataString(RefreshToken) +
+                    "&client_id=" + Uri.EscapeDataString(ClientID);
+
+                var httpreq = (HttpWebRequest)HttpWebRequest.Create(tokenurl);
+                httpreq.UserAgent = AppName;
+                httpreq.Accept = "application/json";
+                httpreq.ContentType = "application/x-www-form-urlencoded";
+                httpreq.Method = "POST";
+
+                using (var stream = httpreq.GetRequestStream()) {
+                    using (var textwriter = new StreamWriter(stream)) {
+                        textwriter.Write(postdata);
+                    }
+                }
+
+
+                JObject jo;
+
+                using (var httpresp = httpreq.GetResponse()) {
+                    using (var respstream = httpresp.GetResponseStream()) {
+                        using (var textreader = new StreamReader(respstream)) {
+                            using (var jsonreader = new JsonTextReader(textreader)) {
+                                jo = JObject.Load(jsonreader);
+                            }
+                        }
+                    }
+                }
+
+                AccessToken = jo.Value<string>("access_token");
+                RefreshToken = jo.Value<string>("refresh_token");
+                TokenType = jo.Value<string>("token_type");
+
+
+                return true;
+            }
+            catch (Exception e) {
+                Console.Out.WriteLine(e);
+                Console.Out.WriteLine(e.StackTrace);
+                return false;
+            }
         }
 
         public HttpWebRequest CreateRequest(string url)
         {
             var request = (HttpWebRequest)WebRequest.Create(url);
             request.Headers[HttpRequestHeader.Authorization] = TokenType + " " + AccessToken;
-            //request.Headers[HttpRequestHeader.UserAgent] = AppName;
             request.UserAgent = AppName;
             return request;
         }

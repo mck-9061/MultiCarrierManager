@@ -48,11 +48,13 @@ namespace MultiCarrierManager {
             this.buyCommHeader = new System.Windows.Forms.ColumnHeader();
             this.buyAmountHeader = new System.Windows.Forms.ColumnHeader();
             this.buyPriceHeader = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
             this.buyLabel1 = new System.Windows.Forms.Label();
             this.sellList1 = new System.Windows.Forms.ListView();
             this.sellCommHeader = new System.Windows.Forms.ColumnHeader();
             this.sellAmountHeader = new System.Windows.Forms.ColumnHeader();
             this.sellPriceHeader = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
             this.sellLabel1 = new System.Windows.Forms.Label();
             this.commodityLabel1 = new System.Windows.Forms.Label();
             this.commodityList1 = new System.Windows.Forms.ListView();
@@ -70,8 +72,8 @@ namespace MultiCarrierManager {
             this.systemLabel1 = new System.Windows.Forms.Label();
             this.callsignLabel1 = new System.Windows.Forms.Label();
             this.nameLabel1 = new System.Windows.Forms.Label();
-            this.columnHeader3 = new System.Windows.Forms.ColumnHeader();
-            this.columnHeader4 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader5 = new System.Windows.Forms.ColumnHeader();
+            this.columnHeader6 = new System.Windows.Forms.ColumnHeader();
             this.tabControl1.SuspendLayout();
             this.managerTab.SuspendLayout();
             this.carrierTemplate.SuspendLayout();
@@ -162,7 +164,7 @@ namespace MultiCarrierManager {
             // 
             // buyList1
             // 
-            this.buyList1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.buyCommHeader, this.buyAmountHeader, this.buyPriceHeader, this.columnHeader4 });
+            this.buyList1.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] { this.buyCommHeader, this.buyAmountHeader, this.columnHeader5, this.buyPriceHeader, this.columnHeader6, this.columnHeader4 });
             this.buyList1.Location = new System.Drawing.Point(440, 414);
             this.buyList1.Name = "buyList1";
             this.buyList1.Size = new System.Drawing.Size(534, 118);
@@ -173,17 +175,22 @@ namespace MultiCarrierManager {
             // buyCommHeader
             // 
             this.buyCommHeader.Text = "Commodity";
-            this.buyCommHeader.Width = 144;
+            this.buyCommHeader.Width = 79;
             // 
             // buyAmountHeader
             // 
-            this.buyAmountHeader.Text = "Amount";
-            this.buyAmountHeader.Width = 94;
+            this.buyAmountHeader.Text = "Total Amount";
+            this.buyAmountHeader.Width = 75;
             // 
             // buyPriceHeader
             // 
             this.buyPriceHeader.Text = "Price/commodity";
-            this.buyPriceHeader.Width = 102;
+            this.buyPriceHeader.Width = 94;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Black Market?";
+            this.columnHeader4.Width = 82;
             // 
             // buyLabel1
             // 
@@ -218,6 +225,11 @@ namespace MultiCarrierManager {
             // 
             this.sellPriceHeader.Text = "Price/commodity";
             this.sellPriceHeader.Width = 110;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Black Market?";
+            this.columnHeader3.Width = 120;
             // 
             // sellLabel1
             // 
@@ -357,15 +369,15 @@ namespace MultiCarrierManager {
             this.nameLabel1.TabIndex = 0;
             this.nameLabel1.Text = "Name:";
             // 
-            // columnHeader3
+            // columnHeader5
             // 
-            this.columnHeader3.Text = "Black Market?";
-            this.columnHeader3.Width = 120;
+            this.columnHeader5.Text = "Outstanding Amount";
+            this.columnHeader5.Width = 108;
             // 
-            // columnHeader4
+            // columnHeader6
             // 
-            this.columnHeader4.Text = "Black Market?";
-            this.columnHeader4.Width = 125;
+            this.columnHeader6.Text = "Credits Allocated";
+            this.columnHeader6.Width = 92;
             // 
             // Form1
             // 
@@ -380,6 +392,9 @@ namespace MultiCarrierManager {
             this.carrierTemplate.ResumeLayout(false);
             this.ResumeLayout(false);
         }
+
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.ColumnHeader columnHeader6;
 
         private System.Windows.Forms.ColumnHeader columnHeader4;
 

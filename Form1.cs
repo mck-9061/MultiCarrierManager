@@ -8,9 +8,11 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows.Forms;
 using MultiCarrierManager.ApiTools;
 using Newtonsoft.Json.Linq;
+using Timer = System.Timers.Timer;
 
 namespace MultiCarrierManager {
     public partial class Form1 : Form {
@@ -48,6 +50,7 @@ namespace MultiCarrierManager {
                 tabControl1.TabPages.Remove(p);
             }
             
+            carriers.Clear();
             
             foreach (String file in files) {
                 carrierCount++;
@@ -204,10 +207,46 @@ namespace MultiCarrierManager {
                 sellList1.Items.Add(item);
             }
             
+            // Purchases
+            buyList1.Items.Clear();
+            foreach (JToken token in carrier["orders"]["commodities"]["purchases"]) {
+                string name = token["name"].ToString();
+                string total = token["total"].ToString();
+                string outstanding = token["outstanding"].ToString();
+                string price = token["price"].ToString();
+                string blackmarket = token["blackmarket"].ToString();
+
+
+                long totalCredits = long.Parse(price) * long.Parse(total);
+
+
+                ListViewItem item = new ListViewItem();
+                item.Text = name;
+                item.SubItems.Add(total);
+                item.SubItems.Add(outstanding);
+                item.SubItems.Add(price);
+                item.SubItems.Add(totalCredits.ToString("N0"));
+                item.SubItems.Add(blackmarket);
+
+                buyList1.Items.Add(item);
+            }
+            
+            
             
         }
 
+        private bool canSend = true;
+        private void onTimedEvent(Object source, ElapsedEventArgs e) {
+            canSend = true;
+        }
+
         private void refreshButton_Click(object sender, EventArgs e) {
+            if (!canSend) {
+                statusLabel.Text = "Please don't spam the API. Give it a few minutes and try again";
+                return;
+            }
+            
+            
             statusLabel.Text = "Updating...";
             foreach (Tuple<string, JObject> carrier in carriers) {
                 string cmdr = carrier.Item1;
@@ -216,6 +255,7 @@ namespace MultiCarrierManager {
                 
                 if (auth == null || !auth.Refresh())
                 {
+                    statusLabel.Text = "Please re-authorize " + cmdr;
                     var req = OAuth2.Authorize();
                     Console.WriteLine(req.AuthURL);
                     auth = req.GetAuth();
@@ -247,6 +287,12 @@ namespace MultiCarrierManager {
 
             statusLabel.Text = "Refreshing...";
             init();
+
+            canSend = false;
+            Timer timer = new Timer(300000);
+            timer.Elapsed += onTimedEvent;
+            timer.AutoReset = false;
+            timer.Enabled = true;
 
 
             statusLabel.Text = "Done";
