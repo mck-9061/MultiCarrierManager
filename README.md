@@ -1,4 +1,5 @@
 # Multi Carrier Manager
+# !! This project is being combined with CATS-legacy. !!
 A simple C# Windows Forms app to aid in managing multiple Fleet Carriers in Elite Dangerous.
 <br>
 Owning multiple carriers in this game requires the use of alt accounts, so this app allows you to view stats about carriers across multiple accounts.
